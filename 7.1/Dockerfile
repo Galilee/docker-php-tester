@@ -7,15 +7,20 @@ RUN apt-get update --yes \
 		git \
 		zip \
 		unzip \
+		bzip2 \
 		libpq-dev \
 		zlib1g-dev \
+		libpng12-dev \
+		libjpeg-dev \
+		libxpm-dev \
+		libbz2-dev \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install PHP modules (don't activate)
 RUN pecl install xdebug \
-	&& docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql \
-	&& rm /usr/local/etc/php/conf.d/docker-php-ext-pdo_*
+	&& docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql mysqli exif zip gd bz2 \
+	&& rm /usr/local/etc/php/conf.d/docker-php-ext-*
 
 # Install composer
 RUN curl -s --location --output /usr/local/bin/composer https://getcomposer.org/composer.phar \
