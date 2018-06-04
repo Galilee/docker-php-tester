@@ -18,7 +18,7 @@ RUN apt-get update --yes \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install PHP modules (don't activate)
-RUN pecl install xdebug \
+RUN pecl install xdebug-2.5.5 \
 	&& docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql mysqli exif zip gd bz2 \
 	&& rm /usr/local/etc/php/conf.d/docker-php-ext-*
 

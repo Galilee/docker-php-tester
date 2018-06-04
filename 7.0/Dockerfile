@@ -10,7 +10,7 @@ RUN apt-get update --yes \
 		bzip2 \
 		libpq-dev \
 		zlib1g-dev \
-		libpng12-dev \
+		libpng-dev \
 		libjpeg-dev \
 		libxpm-dev \
 		libbz2-dev \
@@ -25,6 +25,10 @@ RUN pecl install xdebug \
 # Install composer
 RUN curl -s --location --output /usr/local/bin/composer https://getcomposer.org/composer.phar \
 	&& chmod +x /usr/local/bin/composer
+
+# install deployer
+RUN curl -s --location --output /usr/local/bin/dep https://deployer.org/deployer.phar \
+	&& chmod +x /usr/local/bin/dep
 
 # Ssh config
 RUN mkdir -p /root/.ssh

@@ -26,6 +26,10 @@ RUN pecl install xdebug \
 RUN curl -s --location --output /usr/local/bin/composer https://getcomposer.org/composer.phar \
 	&& chmod +x /usr/local/bin/composer
 
+# install deployer
+RUN curl -s --location --output /usr/local/bin/dep https://deployer.org/deployer.phar \
+	&& chmod +x /usr/local/bin/dep
+
 # Ssh config
 RUN mkdir -p /root/.ssh
 COPY resources/ssh_config /root/.ssh/config
